@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Desa Contoh</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f8ff; }
+        header { background:#228B22; color:white; padding:20px; text-align:center; }
+        nav { background:#32CD32; padding:10px; text-align:center; }
+        nav a { margin:0 15px; color:white; text-decoration:none; font-weight:bold; }
+        nav a:hover { text-decoration:underline; }
+        section { padding:20px; }
+        footer { background:#228B22; color:white; text-align:center; padding:10px; }
+        input, textarea, button { padding:8px; margin:5px 0; width:100%; }
+        .form-container { max-width:500px; margin:auto; background:#e6ffe6; padding:20px; border-radius:10px; }
+        .download-btn { margin-top:10px; background:#32CD32; color:white; border:none; padding:10px; cursor:pointer; }
+        img { max-width:100%; height:auto; border-radius:10px; margin-top:10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Selamat Datang di Website Desa Contoh</h1>
+    </header>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil Desa</a>
+        <a href="#kontak">Kontak & Keluhan</a>
+        <a href="#formulir">Formulir Permohonan Surat</a>
+        <a href="#info">Informasi Menarik</a>
+    </nav>
+
+    <!-- Beranda -->
+    <section id="beranda">
+        <h2>Beranda</h2>
+        <p>Selamat datang di website resmi Desa Contoh. Temukan informasi tentang desa kami, layanan administrasi, dan hal-hal menarik yang bisa Anda kunjungi.</p>
+        <img src="images/contoh-foto-desa.jpg" alt="Foto Desa">
+    </section>
+
+    <!-- Profil Desa -->
+    <section id="profil">
+        <h2>Profil Desa</h2>
+        <p>Desa Contoh terletak di ... (isi dengan informasi desa Anda). Desa kami memiliki budaya yang kaya dan masyarakat yang ramah.</p>
+    </section>
+
+    <!-- Kontak & Keluhan -->
+    <section id="kontak">
+        <h2>Kontak & Keluhan Warga</h2>
+        <p>Hubungi kami di nomor: <strong>0812-3456-7890</strong></p>
+        <div class="form-container">
+            <label for="namaKeluhan">Nama:</label>
+            <input type="text" id="namaKeluhan" placeholder="Masukkan nama">
+
+            <label for="keluhan">Keluhan / Masukan:</label>
+            <textarea id="keluhan" placeholder="Masukkan keluhan atau saran"></textarea>
+
+            <button onclick="downloadKeluhan()">Kirim & Download Keluhan</button>
+        </div>
+    </section>
+
+    <!-- Formulir Data Diri Warga & Permohonan Surat -->
+    <section id="formulir">
+        <h2>Formulir Data Diri & Permohonan Surat</h2>
+        <div class="form-container">
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="nama" placeholder="Masukkan nama">
+
+            <label for="alamat">Alamat:</label>
+            <input type="text" id="alamat" placeholder="Masukkan alamat">
+
+            <label for="ttl">Tanggal Lahir:</label>
+            <input type="date" id="ttl">
+
+            <label for="nik">NIK:</label>
+            <input type="text" id="nik" placeholder="Masukkan Nomor Induk Kependudukan">
+
+            <label for="keperluan">Keperluan Surat:</label>
+            <textarea id="keperluan" placeholder="Masukkan keperluan surat"></textarea>
+
+            <button onclick="downloadForm()">Download Formulir Surat</button>
+        </div>
+    </section>
+
+    <!-- Informasi Menarik Desa -->
+    <section id="info">
+        <h2>Informasi Menarik Desa</h2>
+        <ul>
+            <li>Wisata alam dan budaya desa</li>
+            <li>Festival tahunan desa</li>
+            <li>Produk unggulan masyarakat</li>
+            <li>Sejarah desa yang menarik</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Desa Contoh | Kontak: 0812-3456-7890</p>
+    </footer>
+
+    <script>
+        function downloadForm() {
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const ttl = document.getElementById('ttl').value;
+            const nik = document.getElementById('nik').value;
+            const keperluan = document.getElementById('keperluan').value;
+            const content = `Formulir Permohonan Surat\n\nNama: ${nama}\nAlamat: ${alamat}\nTanggal Lahir: ${ttl}\nNIK: ${nik}\nKeperluan: ${keperluan}`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'formulir_surat.txt';
+            link.click();
+        }
+
+        function downloadKeluhan() {
+            const namaKeluhan = document.getElementById('namaKeluhan').value;
+            const keluhan = document.getElementById('keluhan').value;
+            const content = `Keluhan / Masukan Warga\n\nNama: ${namaKeluhan}\nKeluhan / Masukan: ${keluhan}`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'keluhan_warga.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>
